@@ -1,5 +1,53 @@
 import './App.css';
-import {Container, Accordion, Card, Navbar, Nav, NavDropdown, Button} from "react-bootstrap";
+import {Accordion, Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
+import PlaneAccordion from "./PlaneAccordion";
+
+const planes = [
+    {
+        tail: "N29265",
+        maintenanceItems: [
+            {
+                item: "Annual",
+                last: "6/3/21",
+                due: "6/30/22",
+                daysRemaining: 234,
+                hoursRemaining: "",
+                comment: ""
+            },
+            {
+                item: "ELT Battery Change",
+                last: "6/3/21",
+                due: "6/30/23",
+                daysRemaining: 570,
+                hoursRemaining: "",
+                comment: "Remote 3/26"
+            },
+            {
+                item: "Airworthiness Directive",
+                link: "https://www.federalregister.gov/documents/2017/09/19/2017-16048/airworthiness-directives-ameri-king-corporation-emergency-locator-transmitters",
+                last: "6/3/21",
+                due: "6/30/22",
+                daysRemaining: 234,
+                hoursRemaining: "",
+                comment: "Ameriking ELT - At Annual"
+            },
+        ]
+    },
+    {
+        tail: "N9741T",
+        maintenanceItems: [
+            {
+                item: "Annual",
+                last: "6/3/21",
+                due: "6/30/22",
+                daysRemaining: 234,
+                hoursRemaining: "",
+                comment: ""
+            },
+        ]
+    }
+]
+
 
 function App() {
     return (
@@ -7,16 +55,16 @@ function App() {
             <Navbar bg="light" expand="lg">
                 <Container>
                     <Navbar.Brand href="#home">Airplane Operation Notes</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="#home">Home</Nav.Link>
-                            <Nav.Link href="#notes">Notes</Nav.Link>
+                            <Nav.Link href="#home">Maintenance</Nav.Link>
                             <Nav.Link href="#notes">Members</Nav.Link>
                             <Nav.Link href="#notes">Weight/Balance</Nav.Link>
                             <NavDropdown title="Links" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="https://www.goboko.com/">Goboko</NavDropdown.Item>
-                                <NavDropdown.Item href="https://www.facebook.com/groups/2296761510590369">Facebook Site</NavDropdown.Item>
+                                <NavDropdown.Item href="https://www.facebook.com/groups/2296761510590369">Facebook
+                                    Site</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                         <Navbar.Text>
@@ -25,38 +73,11 @@ function App() {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            <div></div>
+            <div> </div>
             <Accordion>
-                <Accordion.Item eventKey="0">
-                    <Accordion.Header>Archer N29265</Accordion.Header>
-                    <Accordion.Body>
-                        <Card>
-                            <Card.Body>Trim button on yoke inoperable.</Card.Body>
-                        </Card>
-                        <Card>
-                            <Card.Body>Last oil added 9/23 at 2388 tach hours.</Card.Body>
-                        </Card>
-                        <Card>
-                            <Card.Body>Last oil added 9/23 at 2388 tach hours.</Card.Body>
-                        </Card>
-                        <p>&nbsp;</p>
-                        <Button variant="outline-primary">Report Squawk</Button>
-                    </Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="1">
-                    <Accordion.Header>Tomahawk N9741T</Accordion.Header>
-                    <Accordion.Body>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-                        est laborum.
-                        <p>&nbsp;</p>
-                        <Button variant="outline-primary">Report Squawk</Button>
-                    </Accordion.Body>
-                </Accordion.Item>
+                {planes.map((plane, i) => (
+                    <PlaneAccordion plane={plane} key={i}/>
+                ))}
             </Accordion>
         </Container>
     );
